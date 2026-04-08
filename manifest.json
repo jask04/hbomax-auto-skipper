@@ -34,7 +34,7 @@
       "id": "max-auto-skipper@jask04",
       "strict_min_version": "140.0",
       "data_collection_permissions": {
-        "required": []
+        "required": ["none"]
       }
     }
   }
