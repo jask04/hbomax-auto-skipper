@@ -28,5 +28,8 @@
   "icons": {
     "48": "src/icons/icon-48.png",
     "96": "src/icons/icon-96.png"
+  },
+  "data_collection_permissions": {
+    "collectPersonalData": false
   }
 }
