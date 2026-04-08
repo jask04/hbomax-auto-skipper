@@ -29,7 +29,13 @@
     "48": "src/icons/icon-48.png",
     "96": "src/icons/icon-96.png"
   },
-  "data_collection_permissions": {
-    "collectPersonalData": false
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "max-auto-skipper@jask04",
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "collectPersonalData": false
+      }
+    }
   }
 }
