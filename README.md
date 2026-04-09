@@ -1,6 +1,6 @@
 # HBOMax Auto Skipper
-
-A lightweight Firefox extension that automatically skips intros, recaps, and credits on [HBOMax](https://play.hbomax.com).
+![alt text](src/icons/icon-96.png)
+Automatically skips HBOMax intros, recaps, and credits.
 
 ## Features
 
