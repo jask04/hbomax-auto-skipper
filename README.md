@@ -1,6 +1,6 @@
-# Max Auto Skipper
+# HBOMax Auto Skipper
 
-A lightweight Firefox extension that automatically skips intros, recaps, and credits on [Max](https://play.max.com).
+A lightweight Firefox extension that automatically skips intros, recaps, and credits on [HBOMax](https://play.hbomax.com).
 
 ## Features
 
@@ -19,7 +19,7 @@ All three can be toggled independently, plus a master on/off switch.
 
 ## How It Works
 
-The extension uses a `MutationObserver` to watch for skip buttons appearing in the Max player UI. When a button is detected and the corresponding setting is enabled, it's automatically clicked.
+The extension uses a `MutationObserver` to watch for skip buttons appearing in the HBOMax player UI. When a button is detected and the corresponding setting is enabled, it's automatically clicked.
 
 ## License
 
