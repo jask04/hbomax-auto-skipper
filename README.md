@@ -4,23 +4,26 @@ Automatically skips HBOMax intros, recaps, and credits.
 
 ## Features
 
-- **Skip Intro** — Automatically skips episode intros
-- **Skip Recap** — Automatically skips "previously on" recaps
-- **Skip Credits** — Automatically skips to the next episode during credits
+- Skips intros
+- Skips recaps
+- Skips credits (next episode)
+- Enable/disable all features with a master toggle
+- Individually toggle features
 
-All three can be toggled independently, plus a master on/off switch.
+## Installation (Firefox)
+You can install the extension [here](https://addons.mozilla.org/en-US/firefox/addon/hbomax-auto-skipper/)
 
-## Installation
+## Installation (Testing)
 
-1. Clone or download this repository
-2. Open Firefox and navigate to `about:debugging`
-3. Click **"This Firefox"** → **"Load Temporary Add-on"**
-4. Select the `manifest.json` file from this repo
+1. Clone this repository or download the source code.
+2. Open Firefox and navigate to `about:debugging`.
+3. Click "This Firefox" and then "Load Temporary Add-on...".
+4. Select the `manifest.json` file from the project directory.
 
-## How It Works
+## Contributing
 
-The extension uses a `MutationObserver` to watch for skip buttons appearing in the HBOMax player UI. When a button is detected and the corresponding setting is enabled, it's automatically clicked.
+Any contributions are welcome. Please feel free to submit a pull request.
 
 ## License
 
-[MIT](LICENSE)
+This project is licensed under the MIT License.
