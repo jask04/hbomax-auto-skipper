@@ -30,23 +30,19 @@ browser.storage.onChanged.addListener(() => {
   });
 });
 
-let lastClick = 0;
+const clicked = new WeakSet();
 
 const observer = new MutationObserver((mutations) => {
   if (!settings.enabled || !selector) {
     return;
   }
 
-  if (Date.now() - lastClick < 5000) {
-    return;
-  }
-
   for (const mutation of mutations) {
     if (mutation.addedNodes.length) {
       const skipButton = document.querySelector(selector);
-      if (skipButton) {
+      if (skipButton && !clicked.has(skipButton)) {
+        clicked.add(skipButton);
         skipButton.click();
-        lastClick = Date.now();
         return;
       }
     }
