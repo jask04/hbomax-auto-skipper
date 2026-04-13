@@ -30,20 +30,14 @@ browser.storage.onChanged.addListener(() => {
   });
 });
 
-let lastClick = 0;
-
 setInterval(() => {
   if (!settings.enabled || !selector) {
     return;
   }
 
-  if (Date.now() - lastClick < 5000) {
-    return;
-  }
-
   const skipButton = document.querySelector(selector);
-  if (skipButton) {
+  if (skipButton && !skipButton.dataset.skipped) {
+    skipButton.dataset.skipped = 'true';
     skipButton.click();
-    lastClick = Date.now();
   }
 }, 1000);
