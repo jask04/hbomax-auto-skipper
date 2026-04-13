@@ -30,8 +30,14 @@ browser.storage.onChanged.addListener(() => {
   });
 });
 
+let lastClick = 0;
+
 const observer = new MutationObserver((mutations) => {
   if (!settings.enabled || !selector) {
+    return;
+  }
+
+  if (Date.now() - lastClick < 5000) {
     return;
   }
 
@@ -40,6 +46,7 @@ const observer = new MutationObserver((mutations) => {
       const skipButton = document.querySelector(selector);
       if (skipButton) {
         skipButton.click();
+        lastClick = Date.now();
         return;
       }
     }
