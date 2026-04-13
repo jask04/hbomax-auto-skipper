@@ -30,31 +30,24 @@ browser.storage.onChanged.addListener(() => {
   });
 });
 
-let lastClick = 0;
+let lastUrl = location.href;
 
 setInterval(() => {
   if (!settings.enabled || !selector) {
     return;
   }
 
-  if (Date.now() - lastClick < 3000) {
-    return;
+  // Reset skipped markers when URL changes (new episode or replay)
+  if (location.href !== lastUrl) {
+    lastUrl = location.href;
+    document.querySelectorAll('[data-skipped]').forEach((el) => {
+      delete el.dataset.skipped;
+    });
   }
 
   const skipButton = document.querySelector(selector);
-  if (skipButton) {
-    skipButton.dispatchEvent(new MouseEvent('click', { bubbles: false }));
-    lastClick = Date.now();
-
-    // Force-hide the overlay briefly so it fades naturally
-    const overlay = document.getElementById('overlay-root');
-    if (overlay) {
-      overlay.style.opacity = '0';
-      overlay.style.pointerEvents = 'none';
-      setTimeout(() => {
-        overlay.style.opacity = '';
-        overlay.style.pointerEvents = '';
-      }, 3000);
-    }
+  if (skipButton && !skipButton.dataset.skipped) {
+    skipButton.dataset.skipped = 'true';
+    skipButton.click();
   }
 }, 1000);
