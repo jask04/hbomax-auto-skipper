@@ -30,24 +30,20 @@ browser.storage.onChanged.addListener(() => {
   });
 });
 
-let lastUrl = location.href;
+let lastClick = 0;
 
 setInterval(() => {
   if (!settings.enabled || !selector) {
     return;
   }
 
-  // Reset skipped markers when URL changes (new episode or replay)
-  if (location.href !== lastUrl) {
-    lastUrl = location.href;
-    document.querySelectorAll('[data-skipped]').forEach((el) => {
-      delete el.dataset.skipped;
-    });
+  if (Date.now() - lastClick < 30000) {
+    return;
   }
 
   const skipButton = document.querySelector(selector);
-  if (skipButton && !skipButton.dataset.skipped) {
-    skipButton.dataset.skipped = 'true';
+  if (skipButton) {
     skipButton.click();
+    lastClick = Date.now();
   }
 }, 1000);
