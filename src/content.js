@@ -30,23 +30,20 @@ browser.storage.onChanged.addListener(() => {
   });
 });
 
-const clicked = new WeakSet();
+let lastClick = 0;
 
-const observer = new MutationObserver((mutations) => {
+setInterval(() => {
   if (!settings.enabled || !selector) {
     return;
   }
 
-  for (const mutation of mutations) {
-    if (mutation.addedNodes.length) {
-      const skipButton = document.querySelector(selector);
-      if (skipButton && !clicked.has(skipButton)) {
-        clicked.add(skipButton);
-        skipButton.click();
-        return;
-      }
-    }
+  if (Date.now() - lastClick < 5000) {
+    return;
   }
-});
 
-observer.observe(document.body, { childList: true, subtree: true });
+  const skipButton = document.querySelector(selector);
+  if (skipButton) {
+    skipButton.click();
+    lastClick = Date.now();
+  }
+}, 1000);
