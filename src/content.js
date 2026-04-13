@@ -30,14 +30,31 @@ browser.storage.onChanged.addListener(() => {
   });
 });
 
+let lastClick = 0;
+
 setInterval(() => {
   if (!settings.enabled || !selector) {
     return;
   }
 
+  if (Date.now() - lastClick < 3000) {
+    return;
+  }
+
   const skipButton = document.querySelector(selector);
-  if (skipButton && !skipButton.dataset.skipped) {
-    skipButton.dataset.skipped = 'true';
-    skipButton.click();
+  if (skipButton) {
+    skipButton.dispatchEvent(new MouseEvent('click', { bubbles: false }));
+    lastClick = Date.now();
+
+    // Force-hide the overlay briefly so it fades naturally
+    const overlay = document.getElementById('overlay-root');
+    if (overlay) {
+      overlay.style.opacity = '0';
+      overlay.style.pointerEvents = 'none';
+      setTimeout(() => {
+        overlay.style.opacity = '';
+        overlay.style.pointerEvents = '';
+      }, 3000);
+    }
   }
 }, 1000);
